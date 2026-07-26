@@ -1,19 +1,15 @@
 // ============================================
 // SUPABASE CLIENT — untuk SERVER
 // ============================================
-// Dipakai di:
-// - Server Components (default di App Router)
-// - Server Actions
-// - Route Handlers (app/api/*)
-// ============================================
 
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import type { Database } from './database.types'
 
 export async function createClient() {
   const cookieStore = await cookies()
 
-  return createServerClient(
+  return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -28,7 +24,6 @@ export async function createClient() {
             )
           } catch {
             // Server Component tidak bisa set cookie langsung
-            // Ini aman diabaikan karena middleware yang handle
           }
         },
       },

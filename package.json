@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:types": "supabase gen types typescript --linked > lib/supabase/database.types.ts",
+    "db:push": "supabase db push",
+    "db:diff": "supabase db diff"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
